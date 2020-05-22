@@ -1,0 +1,42 @@
+<!-- opciones en html
+<h1>Un título</h1> - para tu título más importante
+<h2>Un subtítulo</h2> - para el título del siguiente nivel
+<h3>Un subsubtítulo</h3> - ... y así hasta <h6>
+<p>Un párrafo de texto</p>
+<em>texto</em> - pone en cursiva tu texto
+<strong>texto</strong> - pone en negrita tu texto
+<br> va en otra línea (no puedes poner nada dentro de br y no hay etiqueta de cierre)
+<a href="https://djangogirls.org">link</a> - crea un vínculo
+<ul><li>primer elemento</li><li>segundo elemento</li></ul> - crea una lista, ¡igual que esta!
+<div></div> - define una sección de la página 
+-->
+
+{% load static %}
+<html>
+    <head>
+        <!-- archivos bootstrap -->
+        <title>Django Claudia blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+        <!-- estilo de letra llamada Lobster de Google Fonts -->
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css"> 
+    </head>
+    <body>
+        <div class="page-header">
+            {% if user.is_authenticated %}
+                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            {% endif %}
+            <h1><a href="/">Django Claudia Blog</a></h1>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
